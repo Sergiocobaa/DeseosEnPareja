@@ -4,6 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Tutorial from "@/components/Tutorial";
 import styles from "./dashboard.module.css";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -47,6 +48,7 @@ export default function DashboardPage() {
   if (!data.hasCouple) {
     return (
       <div className={styles.container}>
+        <Tutorial />
         <div className={styles.column} style={{ textAlign: "center", marginTop: "4rem", padding: "4rem 2rem" }}>
           <h1 className={styles.title} style={{ fontSize: "2rem" }}>¡Aún no estás emparejado!</h1>
           <p style={{ margin: "2rem 0", color: "var(--foreground-muted)", fontSize: "1.1rem" }}>
@@ -65,6 +67,7 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.container}>
+      <Tutorial />
       <header className={`${styles.header} animate-fade-up`}>
         <h1 className={styles.title}>Dashboard</h1>
         <Link href="/pool" className="btn-secondary">

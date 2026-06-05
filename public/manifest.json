@@ -1,0 +1,22 @@
+{
+  "name": "Deseos en Pareja",
+  "short_name": "Deseos",
+  "description": "Una app para intercambiar deseos con tu pareja.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0812",
+  "theme_color": "#0A0812",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
