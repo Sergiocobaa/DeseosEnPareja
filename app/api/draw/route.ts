@@ -42,13 +42,14 @@ export async function POST() {
       where: { creatorId: partnerId, status: "POOL" }
     });
 
-    if (myWishes.length !== 10 || partnerWishes.length !== 10) {
-      return NextResponse.json({ message: "Ambos usuarios deben tener exactamente 10 deseos en su Pool" }, { status: 400 });
+    if (myWishes.length < user.couple.minWishesToDraw || partnerWishes.length < user.couple.minWishesToDraw) {
+      return NextResponse.json({ message: `Ambos usuarios deben tener al menos ${user.couple.minWishesToDraw} deseos en su Pool` }, { status: 400 });
     }
 
-    // Shuffle and pick 2 from each
-    const mySelected = shuffle(myWishes).slice(0, 2);
-    const partnerSelected = shuffle(partnerWishes).slice(0, 2);
+    // Draw logic: pick up to 2 wishes per person, but don't exceed what they have
+    const drawCount = Math.min(2, user.couple.minWishesToDraw);
+    const mySelected = shuffle(myWishes).slice(0, drawCount);
+    const partnerSelected = shuffle(partnerWishes).slice(0, drawCount);
 
     const selectedIds = [
       ...mySelected.map(w => w.id),

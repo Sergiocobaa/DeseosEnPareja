@@ -23,11 +23,14 @@ model User {
 }
 
 model Couple {
-  id               String   @id @default(cuid())
-  user1Id          String
-  user2Id          String
-  createdAt        DateTime @default(now())
-  users            User[]
+  id                 String   @id @default(cuid())
+  user1Id            String
+  user2Id            String
+  createdAt          DateTime @default(now())
+  maxWishes          Int      @default(10)
+  minWishesToDraw    Int      @default(10)
+  showReceivedWishes Boolean  @default(true)
+  users              User[]
 }
 
 model Wish {

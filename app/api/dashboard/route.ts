@@ -45,13 +45,20 @@ export async function GET() {
       where: { creatorId: partnerId, status: "POOL" }
     });
 
+    // Mask toReceive text if showReceivedWishes is false
+    const maskedToReceive = user.couple.showReceivedWishes 
+      ? toReceive 
+      : toReceive.map(w => ({ ...w, text: "Sorpresa secreta 🎁" }));
+
     return NextResponse.json({
       hasCouple: true,
       toFulfill,
-      toReceive,
+      toReceive: maskedToReceive,
       myPoolCount,
       partnerPoolCount,
-      canDraw: myPoolCount === 10 && partnerPoolCount === 10 && toFulfill.length === 0 && toReceive.length === 0
+      maxWishes: user.couple.maxWishes,
+      minWishesToDraw: user.couple.minWishesToDraw,
+      canDraw: myPoolCount >= user.couple.minWishesToDraw && partnerPoolCount >= user.couple.minWishesToDraw && toFulfill.length === 0 && toReceive.length === 0
     });
 
   } catch (error) {

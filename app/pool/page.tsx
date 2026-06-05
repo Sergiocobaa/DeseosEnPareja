@@ -13,8 +13,9 @@ export default function PoolPage() {
   const [message, setMessage] = useState<{ text: string; type: "error" | "success" } | null>(null);
 
   const wishes = data?.wishes || [];
+  const maxWishes = data?.maxWishes || 10;
   const wishCount = wishes.length;
-  const isFull = wishCount >= 10;
+  const isFull = wishCount >= maxWishes;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -74,7 +75,7 @@ export default function PoolPage() {
       <header className={`${styles.header} animate-fade-up`}>
         <h1 className={styles.title}>Pool de Deseos</h1>
         <div className={`${styles.counter} ${isFull ? styles.full : ""}`}>
-          Tus deseos: {wishCount}/10
+          Tus deseos: {wishCount}/{maxWishes}
         </div>
       </header>
 
@@ -108,7 +109,7 @@ export default function PoolPage() {
         )}
         {isFull && (
           <p className={`${styles.message} ${styles.success}`} style={{ marginTop: "1rem" }}>
-            ¡Has completado tu Pool! Ve al Dashboard para iniciar el sorteo.
+            ¡Has completado tu Pool de {maxWishes} deseos! Ve al Dashboard para iniciar el sorteo.
           </p>
         )}
       </div>

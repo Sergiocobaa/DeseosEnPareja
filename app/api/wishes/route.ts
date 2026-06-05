@@ -12,6 +12,11 @@ export async function GET() {
 
     const userId = (session.user as any).id;
 
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include: { couple: true }
+    });
+
     const wishes = await prisma.wish.findMany({
       where: {
         creatorId: userId,
@@ -20,7 +25,7 @@ export async function GET() {
       orderBy: { createdAt: "desc" }
     });
 
-    return NextResponse.json({ wishes });
+    return NextResponse.json({ wishes, maxWishes: user?.couple?.maxWishes || 10 });
   } catch (error) {
     console.error("Error obteniendo deseos:", error);
     return NextResponse.json({ message: "Error interno" }, { status: 500 });
@@ -58,8 +63,8 @@ export async function POST(request: Request) {
       where: { creatorId: userId, status: "POOL" }
     });
 
-    if (poolCount >= 10) {
-      return NextResponse.json({ message: "Ya has alcanzado el límite de 10 deseos en el Pool" }, { status: 400 });
+    if (poolCount >= user.couple.maxWishes) {
+      return NextResponse.json({ message: `Ya has alcanzado el límite de ${user.couple.maxWishes} deseos en el Pool` }, { status: 400 });
     }
 
     const newWish = await prisma.wish.create({

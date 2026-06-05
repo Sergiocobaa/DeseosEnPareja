@@ -35,6 +35,13 @@ export default function Navigation() {
             <span>Deseos</span>
           </Link>
           <Link 
+            href="/settings" 
+            className={`${styles.navLink} ${isActive('/settings') ? styles.activeLink : ''}`}
+          >
+            <span className={styles.icon}>⚙</span>
+            <span>Ajustes</span>
+          </Link>
+          <Link 
             href="/pairing" 
             className={`${styles.navLink} ${isActive('/pairing') ? styles.activeLink : ''}`}
           >

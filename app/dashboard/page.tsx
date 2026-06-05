@@ -62,7 +62,7 @@ export default function DashboardPage() {
     );
   }
 
-  const { toFulfill, toReceive, myPoolCount, partnerPoolCount, canDraw } = data;
+  const { toFulfill, toReceive, myPoolCount, partnerPoolCount, canDraw, maxWishes, minWishesToDraw } = data;
   const isDrawActive = toFulfill.length === 0 && toReceive.length === 0;
 
   return (
@@ -78,14 +78,14 @@ export default function DashboardPage() {
       {isDrawActive && (
         <div className={`${styles.drawSection} animate-fade-up delay-1`}>
           <h2 className={styles.drawTitle}>¡Es hora del sorteo!</h2>
-          <p className={styles.drawSubtitle}>Ambos no tienen deseos activos por cumplir. Preparen los nuevos deseos.</p>
+          <p className={styles.drawSubtitle}>Ambos no tienen deseos activos por cumplir. (Se necesitan {minWishesToDraw} deseos como mínimo para sortear).</p>
           
           <div className={styles.poolStatus}>
             <div className={styles.statusItem}>
-              <span className="muted-text">Tus deseos:</span> <span className="accent-text">{myPoolCount}/10</span>
+              <span className="muted-text">Tus deseos:</span> <span className="accent-text">{myPoolCount}/{maxWishes}</span>
             </div>
             <div className={styles.statusItem}>
-              <span className="muted-text">Su pool:</span> <span className="accent-text">{partnerPoolCount}/10</span>
+              <span className="muted-text">Su pool:</span> <span className="accent-text">{partnerPoolCount}/{maxWishes}</span>
             </div>
           </div>
 
@@ -94,7 +94,7 @@ export default function DashboardPage() {
             onClick={handleDraw}
             disabled={!canDraw || loading}
           >
-            {canDraw ? "Iniciar Sorteo Mágico" : "Esperando a completar ambos pools..."}
+            {canDraw ? "Iniciar Sorteo Mágico" : "Esperando a completar deseos necesarios..."}
           </button>
         </div>
       )}
