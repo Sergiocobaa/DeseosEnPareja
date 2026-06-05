@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DeseosEnPareja_POSTGRES_PRISMA_URL")
+  directUrl = env("DeseosEnPareja_POSTGRES_URL_NON_POOLING")
 }
 
 model User {
