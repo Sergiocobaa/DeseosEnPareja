@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String   @id @default(cuid())
+  name             String
+  email            String   @unique
+  password         String   // Hashed
+  coupleId         String?
+  couple           Couple?  @relation(fields: [coupleId], references: [id])
+  wishesCreated    Wish[]   @relation("WishCreator")
+  wishesReceived   Wish[]   @relation("WishReceiver")
+}
+
+model Couple {
+  id               String   @id @default(cuid())
+  user1Id          String
+  user2Id          String
+  createdAt        DateTime @default(now())
+  users            User[]
+}
+
+model Wish {
+  id               String   @id @default(cuid())
+  creatorId        String
+  receiverId       String
+  text             String   // Validado max 100 chars
+  status           String   @default("POOL") // POOL, ACTIVE, COMPLETED
+  creator          User     @relation("WishCreator", fields: [creatorId], references: [id])
+  receiver         User     @relation("WishReceiver", fields: [receiverId], references: [id])
+  createdAt        DateTime @default(now())
+}
+
+model Invitation {
+  id               String   @id @default(cuid())
+  code             String   @unique
+  creatorId        String
+  expiresAt        DateTime
+}

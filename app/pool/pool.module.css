@@ -1,0 +1,190 @@
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 8rem;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 8rem 3rem 4rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--foreground);
+}
+
+.counter {
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-light);
+  color: var(--foreground);
+  transition: all 0.3s ease;
+  letter-spacing: 0.02em;
+}
+
+.counter.full {
+  background-color: rgba(45, 212, 191, 0.1);
+  color: var(--success);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.formCard {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 3rem;
+}
+
+.textarea {
+  width: 100%;
+  padding: 1.25rem;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--foreground);
+  min-height: 120px;
+  resize: vertical;
+  margin-bottom: 1rem;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 1.05rem;
+  transition: all 0.3s ease;
+}
+
+.textarea::placeholder {
+  color: var(--foreground-muted);
+  opacity: 0.5;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px rgba(255, 107, 157, 0.1);
+}
+
+.formFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.charCount {
+  font-size: 0.9rem;
+  color: var(--foreground-muted);
+  font-weight: 500;
+}
+
+.charCount.limit {
+  color: var(--error);
+}
+
+.wishList {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.wishCard {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wishCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.wishText {
+  font-size: 1.05rem;
+  color: var(--foreground);
+  font-weight: 300;
+}
+
+.wishStatus {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  color: var(--foreground-muted);
+}
+
+.message {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.wishActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnDelete {
+  background: rgba(255, 74, 74, 0.05);
+  color: var(--error);
+  border: 1px solid rgba(255, 74, 74, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.btnDelete:hover {
+  background: rgba(255, 74, 74, 0.15);
+  transform: scale(1.05);
+}
+
+.btnDelete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.error {
+  color: var(--error);
+  background-color: var(--error-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.success {
+  color: var(--success);
+  background-color: var(--success-bg);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}

@@ -1,0 +1,181 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 8rem;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 8rem 3rem 4rem;
+  }
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-light);
+  animation: fadeUp 0.6s ease-out forwards;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--foreground);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+.column {
+  /* Using glass-card logic */
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 2.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border-light);
+}
+
+.columnTitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-playfair), serif;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--foreground-muted);
+  border-radius: 12px;
+  border: 1px dashed var(--border-light);
+}
+
+.wishCard {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-light);
+  margin-bottom: 1.25rem;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wishCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 107, 157, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.wishText {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  color: var(--foreground);
+  font-weight: 300;
+}
+
+.drawSection {
+  background: rgba(255, 107, 157, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 107, 157, 0.2);
+  color: var(--foreground);
+  padding: 4rem 2rem;
+  border-radius: 16px;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.drawTitle {
+  font-size: 2.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.drawSubtitle {
+  margin-bottom: 2.5rem;
+  color: var(--foreground-muted);
+}
+
+.btnComplete {
+  background: rgba(45, 212, 191, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(45, 212, 191, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  width: 100%;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btnComplete:hover {
+  background: rgba(45, 212, 191, 0.2);
+  transform: scale(1.01);
+}
+
+.btnComplete:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.poolStatus {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.statusItem {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-light);
+  letter-spacing: 0.02em;
+}
+
+.btnDraw {
+  background-color: var(--accent);
+  color: #0A0812;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 107, 157, 0.15);
+}
+
+.btnDraw:hover {
+  background-color: var(--accent-hover);
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+}
+
+.btnDraw:disabled {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--foreground-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
